@@ -1,10 +1,19 @@
 const express = require("express");
-const bodyParser = require('body-parser');
-const product = require('./routes/product.route'); // Imports routes for the products
+const bodyParser = require("body-parser");
+const product = require("./routes/product.route"); // Imports routes for the products
 const app = express();
+var keys = require("./configs/keys");
+const mongoose = require("mongoose");
 
+mongoose.connect(keys.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-app.use('/products', product);
+app.use("/products", product);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -13,5 +22,5 @@ app.get("/", (req, res) => {
 let port = 5000;
 
 app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
+  console.log("Server is up and running on port numner " + port);
 });
