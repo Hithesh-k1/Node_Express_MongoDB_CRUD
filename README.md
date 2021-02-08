@@ -10,4 +10,4 @@ steps to run the application
  
  2. To run app 
  
-` node index.js`
+` npm run dev`
