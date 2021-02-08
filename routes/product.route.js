@@ -12,6 +12,7 @@ router.get('/:id', product_controller.product_details);
 // UPDATE
 router.put('/:id/update', product_controller.product_update);
 // DELETE
+router.delete('/:id/delete', product_controller.product_delete);
 
 
 module.exports = router;
