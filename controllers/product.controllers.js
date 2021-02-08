@@ -4,7 +4,7 @@ const Product = require("../models/product.model");
 exports.test = function (req, res) {
   res.send("Greetings from the Test controller!");
 };
-
+// CREATE
 exports.product_create = function (req, res) {
   console.log(req.body);
   let product = new Product({
@@ -19,9 +19,23 @@ exports.product_create = function (req, res) {
   });
 };
 
+//READ
 exports.product_details = function (req, res) {
   Product.findById(req.params.id, function (err, product) {
     if (err) return next(err);
     res.send(product);
   });
 };
+
+// UPDATE
+exports.product_update = function (req, res) {
+  Product.findByIdAndUpdate(
+    req.params.id,
+    { $set: req.body },
+    function (err, product) {
+      if (err) return next(err);
+      res.send("Product udpated.");
+    }
+  );
+};
+
