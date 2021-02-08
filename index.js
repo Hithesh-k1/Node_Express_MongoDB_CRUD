@@ -14,10 +14,10 @@ let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.use("/products", product);
 
@@ -27,6 +27,6 @@ app.get("/", (req, res) => {
 
 let port = 5000;
 
-app.listen(port, () => {
+app.listen(port, () => { 
   console.log("Server is up and running on port numner " + port);
 });
