@@ -5,13 +5,27 @@ const app = express();
 var keys = require("./configs/keys");
 const mongoose = require("mongoose");
 
-mongoose.connect(keys.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.Promise = global.Promise;
-let db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+// mongoose.connect(keys.MONGODB_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// mongoose.Promise = global.Promise;
+// let db = mongoose.connection;
+// db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+// Connecting to the database
+mongoose
+  .connect(keys.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Successfully connected to the database");
+  })
+  .catch((err) => {
+    console.log("Could not connect to the database. Exiting now...", err);
+    process.exit();
+  });
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +41,6 @@ app.get("/", (req, res) => {
 
 let port = 5000;
 
-app.listen(port, () => { 
+app.listen(port, () => {
   console.log("Server is up and running on port numner " + port);
 });
