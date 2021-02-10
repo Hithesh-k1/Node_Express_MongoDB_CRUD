@@ -5,13 +5,7 @@ const app = express();
 var keys = require("./configs/keys");
 const mongoose = require("mongoose");
 
-// mongoose.connect(keys.MONGODB_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// mongoose.Promise = global.Promise;
-// let db = mongoose.connection;
-// db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
 
 // Connecting to the database
 mongoose
